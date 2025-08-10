@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+<body class="p-3 m-3 border-0">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="fw-bolder">Departments</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <form th:action="@{/departments/searchDepartment}" method="get" class="row g-3">
+                                    <div class="col-sm-8">
+                                        <input type="text" name="departmentName" class="form-control" th:value="*{departmentName}" placeholder="Search by department name">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success">Search By Department</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <a th:href="@{/departments/showDepartment}" class="btn btn-success">Add New Department</a>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="col-4">Department</th>
+                                        <th class="col-4">Employees</th>
+                                        <th class="col-4">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="department : ${departmentList}">
+                                        <td th:text="${department.departmentName}"></td>
+                                        <td th:text="${department.employees.size()}"></td>
+                                        <td>
+                                            <a th:href="@{/departments/manageDepartment/{departmentId}(departmentId=${department.departmentId})}" class="link-success">Edit</a>
+                                            &nbsp;|&nbsp;
+                                            <a th:href="@{/departments/deleteDepartment/{departmentId}(departmentId=${department.departmentId})}" class="link-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
