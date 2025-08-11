@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+<body class="p-3 m-3 border-0">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="fw-bolder">Employees</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <form th:action="@{/employee/searchEmployee}" method="get" class="row g-3">
+                                    <div class="col-sm-8">
+                                        <input type="text" name="firstName" class="form-control" th:value="*{firstName}" placeholder="Search by employee name">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-5">
+                                <form th:action="@{/employee/searchEmployeeByDepartment}" method="get" class="row g-3">
+                                    <div class="col-sm-8">
+                                        <input type="text" name="departmentName" class="form-control" th:value="*{departmentName}" placeholder="Search by department name">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-success">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <a th:href="@{/employee/showEmployee}" class="btn btn-success">Add New Employee</a>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>FirstName</th>
+                                        <th>LastName</th>
+                                        <th>PhoneNumber</th>
+                                        <th>DateOfBirth</th>
+                                        <th>UserName</th>
+                                        <th>Department</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="employee : ${employeeList}">
+                                        <td th:text="${employee.firstName}"></td>
+                                        <td th:text="${employee.lastName}"></td>
+                                        <td th:text="${employee.phoneNumber}"></td>
+                                        <td th:text="${employee.dateOfBirth}"></td>
+                                        <td th:text="${employee.userName}"></td>
+                                        <td th:text="${employee.department.departmentName}"></td>
+                                        <td>
+                                            <a th:href="@{/employees/manageEmployee/{employeeId}(employeeId=${employee.employeeId})}" class="link-success">Edit</a>
+                                            &nbsp;|&nbsp;
+                                            <a th:href="@{/employees/deleteEmployee/{employeeId}(employeeId=${employee.employeeId})}" class="link-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
