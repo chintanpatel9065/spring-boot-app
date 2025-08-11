@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-5">
-                                <form th:action="@{/employee/searchEmployee}" method="get" class="row g-3">
+                                <form th:action="@{/employees/searchEmployee}" method="get" class="row g-3">
                                     <div class="col-sm-8">
                                         <input type="text" name="firstName" class="form-control" th:value="*{firstName}" placeholder="Search by employee name">
                                     </div>
@@ -27,7 +27,7 @@
                                 </form>
                             </div>
                             <div class="col-md-5">
-                                <form th:action="@{/employee/searchEmployeeByDepartment}" method="get" class="row g-3">
+                                <form th:action="@{/employees/searchEmployeeByDepartment}" method="get" class="row g-3">
                                     <div class="col-sm-8">
                                         <input type="text" name="departmentName" class="form-control" th:value="*{departmentName}" placeholder="Search by department name">
                                     </div>
@@ -37,7 +37,7 @@
                                 </form>
                             </div>
                             <div class="col-md-2">
-                                <a th:href="@{/employee/showEmployee}" class="btn btn-success">Add New Employee</a>
+                                <a th:href="@{/employees/showEmployee}" class="btn btn-success">Add New Employee</a>
                             </div>
                         </div>
                         <div class="mt-5">

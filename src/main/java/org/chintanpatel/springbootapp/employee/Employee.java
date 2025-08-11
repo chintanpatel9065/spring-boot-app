@@ -42,7 +42,7 @@ public class Employee {
     private String phoneNumber;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotEmpty(message = "Please Provide Date Of Birth")
+    @NotNull(message = "Please Provide Date Of Birth")
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 

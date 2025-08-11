@@ -52,7 +52,9 @@ public class EmployeeController {
     public String manageEmployee(@PathVariable Long employeeId, Model model) {
         if (employeeId != null) {
             Employee employee = employeeService.getEmployeeById(employeeId);
+            List<Department> departmentList = departmentService.getAllDepartmentList();
             model.addAttribute("employee", employee);
+            model.addAttribute("departmentList",departmentList);
         }
         return "employee/employee-form";
     }
